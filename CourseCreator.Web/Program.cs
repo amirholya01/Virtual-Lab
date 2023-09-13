@@ -5,11 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 //IOC
-
 #region IOC
 
 builder.Services.AddTransient<ICourseService, CourseService>();
-
+builder.Services.AddTransient<IUserService, UserService>();
 #endregion
 
 builder.Services.AddRazorPages();

@@ -1,0 +1,83 @@
+@page
+@model CourseCreator.Web.Pages.Admin.Users.Index
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h3 class="text-secondary">List of users:</h3>
+            <hr/>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <form >
+            <div class="col-sm-5 col-md-5 mt-3 mb3">
+                <input type="text" placeholder="Enter Username" class="form-control" name="filterUsername" />
+            </div>
+            <div class="col-sm-5 col-md-5 mt-3 mb3">
+                <input type="text" placeholder="Enter Email" class="form-control" name="filterEmail" />
+            </div>
+            <div class="col-sm-2 col-md-2 mt-3 mb3">
+                <button type="submit" class="btn btn-info">Search</button>
+                <a class="btn btn-danger btn-sm" href="/Admin/Users">Clear</a>
+            </div>
+        </form>
+        
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Registration Date</th>
+                <th>Commands</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var user in Model.UserForAdminViewModel.Users)
+            {
+                <tr>
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>
+                        @if (user.IsActive)
+                        {
+                            <p class="text-success">Active</p>
+                        }
+                        else
+                        {
+                            <p class="text-danger">DeActive</p>
+                        }
+                    </td>
+                    <td>@user.RegisterDate</td>
+                    <td>
+                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-6">
+        <div class="row">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                           
+                    @for(int i = 1; i <= Model.UserForAdminViewModel.PageCount; i++)
+                    {
+                        <li class="page-item @((i==Model.UserForAdminViewModel.CurrentPage)?"active" : "")">
+                            <a class="page-link" href="/Admin/Users?PageId=@i">@i</a>
+                        </li>
+                    }
+                    
+                         
+                </ul>
+            </nav>
+        </div>
+</div>
