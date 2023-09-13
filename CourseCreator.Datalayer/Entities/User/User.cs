@@ -41,5 +41,6 @@ public class User
     
     #region Relations
     public virtual ICollection<UserRole> UserRoles { get; set; }
+    public virtual ICollection<Course.Course> Courses { get; set; }
     #endregion
 }

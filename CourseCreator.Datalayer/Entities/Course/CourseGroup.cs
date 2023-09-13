@@ -20,6 +20,12 @@ public class CourseGroup
     public int? ParentId { get; set; }
 
     [ForeignKey("ParentId")]
-    public ICollection<CourseGroup> CourseGroups { get; set; }
+    public virtual ICollection<CourseGroup> CourseGroups { get; set; }
+
+    [InverseProperty("CourseGroup")]
+    public virtual ICollection<Course> Courses { get; set; }
+
+    [InverseProperty("Group")]
+    public ICollection<Course> SubGroup { get; set; }
     
 }
