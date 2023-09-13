@@ -1,0 +1,28 @@
+@model IEnumerable<CourseCreator.Datalayer.Entities.Course.CourseGroup>
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                @foreach (var group in Model.Where(g => g.ParentId == null))
+                {
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown">@group.GroupTitle</a>
+                        @if(Model.Any(g => g.ParentId == group.GroupId))
+                        {
+                            <ul class="dropdown-menu bg-dark">
+                                @foreach(var sub in Model.Where(g => g.ParentId == group.GroupId))
+                                {
+                                    
+                                        <li><a class="dropdown-item" style="color: white;" href="#">@sub.GroupTitle</a></li>                                   
+                                }
+                            </ul>
+                        }
+                    </li>
+ 
+                }
+             </ul>
+            </div>
+     </div>
+</nav>
