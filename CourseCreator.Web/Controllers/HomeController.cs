@@ -21,7 +21,12 @@ public class HomeController : Controller
     
     public IActionResult GetSubGroups(int id)
     {
-        var subGroups = _courseService.GetSubGroupForManageCourse(id);
-        return Json(new SelectList(subGroups, "Value", "Text"));
+        List<SelectListItem> list = new List<SelectListItem>()
+        {
+            new SelectListItem(){Text = "Please choose one", Value = ""}
+        };
+        list.AddRange(_courseService.GetSubGroupForManageCourse(id));
+       
+        return Json(new SelectList(list, "Value", "Text"));
     }
 }
