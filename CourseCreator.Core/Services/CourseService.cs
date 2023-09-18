@@ -2,6 +2,7 @@ using CourseCreator.Core.Services.Interfaces;
 using CourseCreator.Datalayer.Context;
 using CourseCreator.Datalayer.Entities.Course;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CourseCreator.Core.Services;
 
@@ -36,6 +37,16 @@ public class CourseService : ICourseService
             {
                 Text = g.GroupTitle,
                 Value = g.GroupId.ToString()
+            }).ToList();
+    }
+
+    public List<SelectListItem> GetTeachers()
+    {
+       return _context.userRoles.Where(r => r.RoleId == 2).Include(r => r.User)
+            .Select(u => new SelectListItem()
+            {
+                Value = u.UserId.ToString(),
+                Text = u.User.Username
             }).ToList();
     }
 }

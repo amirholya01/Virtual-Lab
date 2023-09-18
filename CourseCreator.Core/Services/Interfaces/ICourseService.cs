@@ -10,5 +10,7 @@ public interface ICourseService
     List<SelectListItem> GetGroupForManageCourse();
     IEnumerable<SelectListItem> GetSubGroupForManageCourse(int groupId);
 
+    List<SelectListItem> GetTeachers();
+
     #endregion
 }

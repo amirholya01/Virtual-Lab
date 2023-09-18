@@ -26,6 +26,9 @@ public class CreateCourse : PageModel
 
         var subGroups = _courseService.GetSubGroupForManageCourse(int.Parse(groups.First().Value));
         ViewData["SubGroups"] = new SelectList(subGroups, "Value", "Text");
+
+        var teachers = _courseService.GetTeachers();
+        ViewData["Teachers"] = new SelectList(teachers, "Value", "Text");
     }
 
   
