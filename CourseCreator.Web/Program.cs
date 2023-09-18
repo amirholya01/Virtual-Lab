@@ -25,6 +25,7 @@ app.UseStaticFiles();
 app.MapRazorPages();
 //app.MapGet("/", () => "Hello World!");
 app.MapDefaultControllerRoute();
+
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
@@ -33,4 +34,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
+
 app.Run();

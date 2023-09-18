@@ -1,6 +1,7 @@
 using CourseCreator.Core.Services.Interfaces;
 using CourseCreator.Datalayer.Context;
 using CourseCreator.Datalayer.Entities.Course;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CourseCreator.Core.Services;
 
@@ -16,5 +17,25 @@ public class CourseService : ICourseService
     public List<CourseGroup> GetAllGroup()
     {
         return _context.CourseGroups.ToList();
+    }
+
+    public List<SelectListItem> GetGroupForManageCourse()
+    {
+        return _context.CourseGroups.Where(g => g.ParentId == null)
+            .Select(g => new SelectListItem()
+            {
+                Text = g.GroupTitle,
+                Value = g.GroupId.ToString()
+            }).ToList();
+    }
+
+    public IEnumerable<SelectListItem> GetSubGroupForManageCourse(int groupId)
+    {
+        return _context.CourseGroups.Where(g => g.ParentId == groupId)
+            .Select(g => new SelectListItem()
+            {
+                Text = g.GroupTitle,
+                Value = g.GroupId.ToString()
+            }).ToList();
     }
 }
