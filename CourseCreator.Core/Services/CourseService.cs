@@ -49,4 +49,22 @@ public class CourseService : ICourseService
                 Text = u.User.Username
             }).ToList();
     }
+
+    public List<SelectListItem> GetLevels()
+    {
+        return _context.CourseLevels.Select(l => new SelectListItem()
+        {
+            Value = l.LevelId.ToString(),
+            Text = l.LevelTitle
+        }).ToList();
+    }
+
+    public List<SelectListItem> GetStatus()
+    {
+        return _context.CourseStatus.Select(s => new SelectListItem()
+        {
+            Value = s.StatusId.ToString(),
+            Text = s.StatusTitle
+        }).ToList();
+    }
 }

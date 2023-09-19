@@ -24,6 +24,10 @@ public class CourseCreatorContext : DbContext
     public DbSet<Course> Courses { get; set; }
 
     public DbSet<CourseEpisode> CourseEpisodes { get; set; }
+
+    public DbSet<CourseLevel> CourseLevels { get; set; }
+
+    public DbSet<CourseStatus> CourseStatus { get; set; }
     #endregion
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -31,13 +35,13 @@ public class CourseCreatorContext : DbContext
         modelBuilder.Entity<CourseGroup>()
             .HasQueryFilter(g => !g.IsDelete);
 
-        modelBuilder.Entity<Course>()
+      /*  modelBuilder.Entity<Course>()
             .Property(c => c.CourseStatus)
             .HasConversion<string>();
 
         modelBuilder.Entity<Course>()
             .Property(c => c.CourseLevel)
-            .HasConversion<string>();
+            .HasConversion<string>();*/
         
        
         base.OnModelCreating(modelBuilder);

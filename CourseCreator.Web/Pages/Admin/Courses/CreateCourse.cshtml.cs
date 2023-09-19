@@ -29,6 +29,17 @@ public class CreateCourse : PageModel
 
         var teachers = _courseService.GetTeachers();
         ViewData["Teachers"] = new SelectList(teachers, "Value", "Text");
+
+        var levels = _courseService.GetLevels();
+        ViewData["Levels"] = new SelectList(levels, "Value", "Text");
+
+        var statuses = _courseService.GetStatus();
+        ViewData["Statuses"] = new SelectList(statuses, "Value", "Text");
+    }
+
+    public IActionResult OnPost(IFormFile imgCourseUp, IFormFile demoUp)
+    {
+        return Page();
     }
 
   

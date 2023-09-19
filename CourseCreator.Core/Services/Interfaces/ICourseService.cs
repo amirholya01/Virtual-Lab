@@ -12,5 +12,9 @@ public interface ICourseService
 
     List<SelectListItem> GetTeachers();
 
+    List<SelectListItem> GetLevels();
+
+    List<SelectListItem> GetStatus();
+
     #endregion
 }

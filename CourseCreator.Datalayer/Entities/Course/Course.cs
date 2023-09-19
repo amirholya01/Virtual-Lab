@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CourseCreator.Datalayer.Entities.Enums;
 
 namespace CourseCreator.Datalayer.Entities.Course;
 
@@ -14,9 +13,12 @@ public class Course
 
     public int? SubGroup { get; set; }
 
-    public CourseStatus CourseStatus { get; set; }
+    [Required]
+    public int StatusId { get; set; }
 
-    public CourseLevel CourseLevel { get; set; }
+    
+    [Required]
+    public int LevelId { get; set; }
     
     [Required]
     public int TeacherId { get; set; }
@@ -41,11 +43,15 @@ public class Course
 
     [MaxLength(100, ErrorMessage = "The name's file of demo can not be more than 100 characters.")]
     public string DemoFileName { get; set; }
-
+    
     #region Relation
 
     [ForeignKey("TeacherId")]
     public virtual User.User User { get; set; }
+
+    public CourseStatus CourseStatus { get; set; }
+    
+    public CourseLevel CourseLevel { get; set; }
     
     [ForeignKey("GroupId")]
     public virtual CourseGroup CourseGroup { get; set; }

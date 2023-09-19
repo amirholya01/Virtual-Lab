@@ -3,6 +3,7 @@ using System;
 using CourseCreator.Datalayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CourseCreator.Datalayer.Migrations
 {
     [DbContext(typeof(CourseCreatorContext))]
-    partial class CourseCreatorContextModelSnapshot : ModelSnapshot
+    [Migration("20230919082042_mig_make_level_status_DB")]
+    partial class mig_make_level_status_DB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
